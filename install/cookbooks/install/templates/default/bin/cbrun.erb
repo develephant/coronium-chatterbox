@@ -1,0 +1,13 @@
+#!/bin/bash
+
+case $1 in
+  start)
+     /usr/local/bin/chatterbox /home/coronium/config.lua 1>>/home/coronium/logs/chatterbox.log &
+     echo $! > /var/run/chatterbox.pid ;
+     ;;
+   stop)
+     kill `cat /var/run/chatterbox.pid` ;;
+   *)
+     echo "usage: chatterbox {start|stop}" ;;
+esac
+exit 0
