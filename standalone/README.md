@@ -2,9 +2,9 @@
 
 ## Installation
 
-### Linux (Ubuntu 16) and OSX
+### Linux (Ubuntu 16) / OSX
 
-Select a distribution (Linux or OSX), copy the __chatterbox__ binary to __/usr/local/bin__. Be sure to set the proper permissions.
+Select a distribution directory (__linux__ or __osx__), copy the __chatterbox__ binary inside to __/usr/local/bin__. Be sure to set the proper permissions.
 
 You will need a __config.lua__ file to start up the server, for example:
 
