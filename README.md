@@ -10,6 +10,3 @@ __Status:__ _Early Beta_
 
 [https://develephant.github.io/coronium-chatterbox-docs](https://develephant.github.io/coronium-chatterbox-docs)
 
-## Client Modules
-
-[Coronium ChatterBox Client for Corona](https://github.com/develephant/coronium-chatterbox-client)
