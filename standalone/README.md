@@ -22,7 +22,7 @@ return
 To start the __Coronium ChatterBox__ server:
 
 ```
-./chatterbox path/to/config.lua
+chatterbox path/to/config.lua
 ```
 
 You can access the server with your ip using the __Coronium ChatterBox Plugin__ available on the __[Corona Marketplace](https://marketplace.coronalabs.com)__.
