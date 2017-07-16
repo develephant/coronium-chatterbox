@@ -123,13 +123,25 @@ service "ssh" do
 end
 
 ###############################################################################
-# Fin
+# System
 ###############################################################################
 
+#host
+bash "Set hostname" do
+  cwd "/etc"
+  code <<-EOH
+    echo "127.0.0.1 $(hostname)" >> hosts
+  EOH
+end
+
+#monit
 service "monit" do
   action :reload
 end
 
+###############################################################################
+# Fin
+###############################################################################
 template "#{node['cs']['home']}/chatterbox.index" do
   source 'chatterbox.index.erb'
   owner node['cs']['user']
