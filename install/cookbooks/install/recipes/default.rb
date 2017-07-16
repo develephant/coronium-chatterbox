@@ -52,13 +52,6 @@ directory "#{node['cs']['home']}/logs" do
   recursive true
 end
 
-file "#{node['cs']['home']}/logs/cs.log" do
-  content 'Log file...'
-  owner node['cs']['user']
-  group node['cs']['group']
-  mode '0660'
-end
-
 template "#{node['cs']['home']}/config.lua" do
   source 'config.lua.erb'
   owner node['cs']['user']
