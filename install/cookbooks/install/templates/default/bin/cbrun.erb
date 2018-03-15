@@ -2,7 +2,7 @@
 
 case $1 in
   start)
-     /usr/local/bin/chatterbox /home/coronium/config.lua 1>>/home/coronium/logs/chatterbox.log &
+     /usr/local/bin/chatterbox /home/coronium/chatterbox/config.lua 1>>/home/coronium/chatterbox/logs/chatterbox.log &
      echo $! > /var/run/chatterbox.pid ;
      ;;
    stop)

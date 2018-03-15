@@ -31,25 +31,29 @@ user 'coronium' do
   home node['cs']['home']
   shell '/bin/bash'
   password node['cs']['password']
+  not_if "test -d #{node['cs']['home']}"
 end
 
 group 'sudo' do
   action :modify
   members ['coronium']
+  not_if "test -d #{node['cs']['home']}"
 end
 
 ###############################################################################
 # Scaffold
 ###############################################################################
 
-directory "#{node['cs']['home']}/logs" do
-  owner node['cs']['user']
-  group node['cs']['group']
-  mode '0755'
-  recursive true
+%w(chatterbox chatterbox/logs).each do |dir|
+  directory "#{node['cs']['home']}/#{dir}" do
+    owner node['cs']['user']
+    group node['cs']['group']
+    mode '0755'
+    recursive true
+  end
 end
 
-template "#{node['cs']['home']}/config.lua" do
+template "#{node['cs']['home']}/chatterbox/config.lua" do
   source 'config.lua.erb'
   owner node['cs']['user']
   group node['cs']['group']
@@ -61,7 +65,6 @@ cookbook_file "#{node['cs']['bin']}/chatterbox" do
   owner node['cs']['user']
   group node['cs']['group']
   mode '0750'
-  action :create
 end
 
 template "#{node['cs']['bin']}/cbrun" do
@@ -117,6 +120,7 @@ bash 'Set hostname' do
   code <<-EOH
     echo "127.0.0.1 $(hostname)" >> hosts
   EOH
+  not_if 'grep $(hostname) /etc/hosts'
 end
 
 # monit
@@ -125,7 +129,7 @@ include_recipe '::monit'
 ###############################################################################
 # Fin
 ###############################################################################
-template "#{node['cs']['home']}/chatterbox.index" do
+template "#{node['cs']['home']}/chatterbox/chatterbox.index" do
   source 'chatterbox.index.erb'
   owner node['cs']['user']
   group node['cs']['group']
