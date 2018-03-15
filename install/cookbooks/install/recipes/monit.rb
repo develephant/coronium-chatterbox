@@ -16,9 +16,9 @@ cookbook_file "#{node['cs']['monit']}/conf-available/chatterbox_monit" do
 end
 
 # Link Enabled
-# link "#{node['monit']['cs']}/conf-enabled/chatterbox_monit" do
-#   to "#{node['monit']['cs']}/conf-available/chatterbox_monit"
-# end
+link "#{node['monit']['cs']}/conf-available/chatterbox_monit" do
+  to "#{node['monit']['cs']}/conf-enabled/chatterbox_monit"
+end
 
 service 'monit' do
   action :reload
