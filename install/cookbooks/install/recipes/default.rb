@@ -20,10 +20,7 @@ apt_update 'update apt' do
   action :update
 end
 
-apt_package [
-  'uuid',
-  'monit'
-]
+apt_package 'uuid'
 
 ###############################################################################
 # User
@@ -67,11 +64,6 @@ cookbook_file "#{node['cs']['bin']}/chatterbox" do
   action :create
 end
 
-template "#{node['cs']['monit']}/monitrc" do
-  source 'monitrc.erb'
-  mode '0600'
-end
-
 template "#{node['cs']['bin']}/cbrun" do
   source 'bin/cbrun.erb'
   owner node['cs']['user']
@@ -111,7 +103,7 @@ bash 'allow passwords' do
   EOF
 end
 
-service "ssh" do
+service 'ssh' do
   action :reload
 end
 
@@ -119,18 +111,16 @@ end
 # System
 ###############################################################################
 
-#host
-bash "Set hostname" do
-  cwd "/etc"
+# host
+bash 'Set hostname' do
+  cwd '/etc'
   code <<-EOH
     echo "127.0.0.1 $(hostname)" >> hosts
   EOH
 end
 
-#monit
-service "monit" do
-  action :reload
-end
+# monit
+include_recipe '::monit'
 
 ###############################################################################
 # Fin

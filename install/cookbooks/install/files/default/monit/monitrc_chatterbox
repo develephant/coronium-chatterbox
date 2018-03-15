@@ -1,0 +1,7 @@
+# Chatterbox Monit
+
+#check process chatterbox matching "chatterbox"
+
+check process chatterbox with pidfile /var/run/chatterbox.pid
+  start program = "/usr/local/bin/cbrun start"
+  stop program = "/usr/local/bin/cbrun stop"
