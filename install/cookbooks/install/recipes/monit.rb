@@ -7,7 +7,6 @@ apt_package 'monit'
 cookbook_file "#{node['cs']['monit']}/monitrc" do
   source 'monit/monitrc.default'
   mode '0600'
-  not_if "test -f #{node['cs']['monit']}/monitrc"
 end
 
 cookbook_file "#{node['cs']['monit']}/conf-available/chatterbox_monit" do
