@@ -37,7 +37,6 @@ end
 group 'sudo' do
   action :modify
   members ['coronium']
-  not_if "test -d #{node['cs']['home']}"
 end
 
 ###############################################################################
